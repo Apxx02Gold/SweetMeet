@@ -1,0 +1,691 @@
+ <!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from www.teenfinder.com/landing/fm6100?clickId=619eceb6-3c0f-402f-a748-3168c5f5377e by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 18 Dec 2022 09:01:17 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<title>TeenFinder</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="language" content="en-US" />
+<meta http-equiv="content-language" content="en-US" />
+<meta name="description" content="TeenFinder" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+<link rel="icon" type="image/png" href="https://lpmedia.servefilesonly.com/img/_favicons/Teenfinder_fav.png?972398" />
+<link rel="apple-touch-icon" href="https://lpmedia.servefilesonly.com/img/_patterns/apple-touch-icon.png?972398" />
+<link rel="stylesheet" href="https://lpmedia.servefilesonly.com/build/widgets/registrationFormBuilder/styles.min.css?972398" />
+<link rel="stylesheet" href="https://lpmedia.servefilesonly.com/build/widgets/loginFormBuilder/styles.min.css?972398" />
+<link rel="stylesheet" href="https://lpmedia.servefilesonly.com/widgets/corner/corner.css?972398" />
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+<link rel="stylesheet" href="https://lpmedia.servefilesonly.com/build/templates/Faded/style-form-ig.min.css?972398" />
+<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+<script>
+    var OneSignal = window.OneSignal || [];
+    OneSignal.push(function () {
+        OneSignal.init({
+            appId:  "16e66fd2-e597-46af-9e0c-adc4b3642997",
+
+        notifyButton: {
+                    enable: false,
+                },
+
+        welcomeNotification: {
+            disable: true
+        },
+
+        promptOptions: {
+            slidedown: {
+                prompts: [
+                    {
+                        type: "push",
+                        enabled: true,
+                        autoPrompt: true,
+                        text: {
+                            actionMessage: "¿Quieres recibir mensajes de mujeres de tu área? ;)",
+                            acceptButton: "Permitir",
+                            cancelButton: "no gracias"
+                        },
+                        delay: {
+                            pageViews: 0,
+                            timeDelay: 0
+                        }
+                    }
+                ]
+            }
+        }
+        });
+
+        OneSignal.getUserId(function (id) {
+
+                const queryString = window.location.search;
+                const urlParams = new URLSearchParams(queryString);
+                const oSig = urlParams.get('osig_externalid');
+
+                if (id != null && !oSig) {
+
+                    let newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + document.location.search + '&osig_externalid=' + id + '::' + OneSignal.config.appId;
+                    window.history.pushState({path: newurl}, '', newurl);
+                }
+            }
+        );
+
+        OneSignal.on('subscriptionChange', async function (isSubscribed) {
+            let osig_externalid = await OneSignal.getUserId();
+
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const name = urlParams.get('name')
+            const uid = urlParams.get('uid')
+            const campaign_lp = urlParams.get('campaign_lp')
+            const ba = urlParams.get('ba')
+            const product = urlParams.get('product')
+            const oSig = urlParams.get('osig_externalid')
+
+            if (osig_externalid != null && !oSig) {
+                let newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + document.location.search + '&osig_externalid=' + osig_externalid + '::' + OneSignal.config.appId;
+                window.history.pushState({path: newurl}, '', newurl);
+            }
+
+            if (name != null) {
+                OneSignal.sendTags({
+                    name: name,
+                    campaign_lp: campaign_lp,
+                    ba: ba,
+                    product: product,
+                });
+            }
+
+            if (uid != null) {
+                OneSignal.setExternalUserId(uid);
+            }
+        })
+
+    });
+</script>
+</head>
+<body class="language-en">
+<script>
+                let templateConfigs = {
+                    soiPage: 'TeenFinder.apk'
+                };
+            </script>
+<div class="wrapper map">
+<div class="map-wrapper">
+<div id="map"></div>
+</div>
+<div class="login-box">
+<div class="login-form">
+<a href="https://www.teenfinder.com/" class="btn btn-login js-btn-open-login">Already a member?</a>
+<div class="btn-nav">
+<input type="checkbox">
+<span></span>
+<span></span>
+<span></span>
+<p>
+<a href="https://www.teenfinder.com/" class="btn btn-login js-btn-open-login">Already a member?</a>
+</p>
+</div>
+<div class="login-form-holder js-login-form-holder hidden">
+<div class="login-form-holder-inner">
+<form id="login-form" action="https://www.teenfinder.com/user/login" method="post" data-submit-type="ajax">
+<a href="https://www.teenfinder.com/" class="btn-close js-btn-close-login">&times;</a>
+<p class="headline-member">Already a member?</p>
+<div class="form-group login-username">
+<input type="text" class="form-control" id="login_username" name="login_username" data-username-required-message="Your email address is invalid or not allowed." data-email-invalid-message="Your email address is invalid or not allowed." placeholder="Email address" />
+</div>
+<div class="form-group login-password">
+<input type="password" class="form-control" id="login_password" name="login_password" data-password-required-message="Your password is invalid." placeholder="Password" />
+</div>
+<div class="js-errors"></div>
+<div class="btn-group">
+<button id="login_submit" class="btn-submit" data-login-fail-message="Email address or password is not recognised." data-username-fail-message="Email address or password is not recognised." data-password-fail-message="Email address or password is not recognised." type="submit">Login</button>
+</div>
+<input type="hidden" name="trk" value="Teenfinder.com">
+</form>
+</div>
+</div>
+</div>
+</div>
+<div class="registration-form-builder-wrapper">
+<div class="registration-form-builder ">
+<div class="registration-form-builder-inner">
+ <div class="form-header">
+<div class="logo"><img src="https://lpmedia.servefilesonly.com/img/_logos/Teenfinder_Logo_w.png" alt="Teenfinder.com" width="193" height="60" /></div>
+<h1 class="">Be ready to meet teen (18+) in your area.</h1>
+</div>
+<form id="regform" action="https://www.teenfinder.com/user/register" method="POST" autocomplete="on" novalidate>
+<div class="form-inner">
+<div class="step step-fields js-step" data-step="step1">
+<div class="step-inner">
+<p class="headline-1">This website is for 18+ only. Would you like to continue?</p>
+<div class="btn-group">
+<button type="button" class="btn btn-next js-next-step">Continue</button>
+</div>
+</div>
+</div>
+<div class="step step-fields js-step step-hidden" data-step="step2">
+<div class="step-inner">
+<p class="headline-1">Do you want to have sex with hot women?</p>
+<div class="btn-group">
+<button type="button" class="btn btn-next js-next-step">Yes, continue!</button>
+</div>
+</div>
+</div>
+<div class="step step-fields js-step step-hidden" data-step="step3">
+<div class="step-inner">
+<p class="headline-1">Are you prepared to have sex more than once a week?</p>
+<div class="btn-group">
+<button type="button" class="btn btn-next js-next-step">Yes, continue!</button>
+</div>
+</div>
+</div>
+<div class="step step-fields js-step step-hidden" data-step="step4">
+<div class="step-inner">
+<p class="headline-1">You will see naked pics of women from your area. Please be discreet.</p>
+<div class="btn-group">
+<button type="button" class="btn btn-next js-next-step">Continue</button>
+</div>
+</div>
+</div>
+<div class="step step-fields js-step step-hidden" data-step="step5">
+<div class="step-inner">
+<p class="headline-1">Are you ready for free sex dating? ?</p>
+<div class="btn-group">
+<button type="button" class="btn btn-next js-next-step">Yes, continue!</button>
+</div>
+</div>
+</div>
+<div class="step step-fields js-step step-ageGroup step-hidden" data-step="stepAge">
+<div class="step-inner">
+<p class="headline-1">How old are you?</p>
+<div class="form-group ">
+<div class="form-group-inner custom-select">
+<select id="age" name="age" class="form-control ">
+<option selected value="">Select</option>
+<option value="18-25">18 - 25</option>
+<option value="26-35">26 - 35</option>
+<option value="36-45">36 - 45</option>
+<option value="46-55">46 - 55</option>
+<option value="56-65">56 - 65</option>
+<option value="66+">66+</option>
+</select>
+</div>
+</div>
+<div class="btn-group">
+<button type="button" class="btn-next js-next-step" aria-label="true"></button>
+</div>
+</div>
+</div>
+ <div class="step step-fields js-step js-validate-step step-hidden" data-step="username">
+<div class="step-inner">
+<p class="headline-1">Choose a Username</p>
+<div class="form-group ">
+<div class="form-group-inner">
+<input type="text" id="username" name="username" class="form-control " value="" placeholder="Username" autocomplete="given-name" data-validator="notDigital|required|inputUserNameUTF|minLength|maxLength" data-inputUserNameUTF-message="Please enter a valid username. Avoid special characters in your name." data-notDigital-message="Please enter a valid username. Avoid special characters in your name." data-required-message="Please enter a valid username. Avoid special characters in your name." data-minLength-compare="3" data-minLength-message="Your username must be at least 3 characters long." data-maxLength-compare="30" data-maxLength-message="Your username can not be longer than 30 characters." />
+</div>
+</div>
+<div class="btn-group">
+<button type="button" class="btn btn-next js-next-step">Continue</button>
+</div>
+</div>
+</div>
+<div class="step step-fields js-step js-validate-step step-hidden" data-step="password">
+<div class="step-inner">
+<p class="headline-1">Choose a Password</p>
+<div class="form-group ">
+<div class="form-group-inner">
+<input type="password" id="password" name="password" class="form-control " value="" placeholder="Password" autocomplete="password" data-validator="required|minLength|maxLength|noSpaceChar" data-required-message="Your password is invalid." data-noSpaceChar-message="Your password is invalid." data-minLength-compare="6" data-minLength-message="Your password must be at least 6 characters long." data-maxLength-compare="100" data-maxLength-message="Your password can not be longer than 100 characters." />
+</div>
+</div>
+<div class="btn-group">
+<button type="button" class="btn btn-next js-next-step">Continue</button>
+</div>
+</div>
+</div>
+<div class="step step-fields js-step step-hidden" data-step="lastForm">
+<div class="step-inner">
+<p class="headline-1">Enter your email</p>
+<div class="form-group hidden">
+<div class="form-group-inner">
+<input type="text" id="gender" name="gender" class="form-control " value="MALE" />
+</div>
+</div>
+<div class="form-group hidden">
+<div class="form-group-inner">
+<input type="text" id="searchGender" name="searchGender" class="form-control " value="FEMALE" />
+</div>
+</div>
+<div class="form-group ">
+<div class="form-group-inner">
+<input type="email" id="email" name="email" class="form-control " value="" placeholder="Email address" autocomplete="email" data-validator="required|email|maxLength" data-required-message="Your Email address is invalid or not allowed." data-email-message="Your Email address is invalid or not allowed." data-maxLength-compare="150" data-maxLength-message="The Email cannot be longer than 150 characters." data-emailAddressNotValid-message="The Email address is not allowed." data-emailExists-message="The Email address is already in use." data-EmailBlacklisted-message="Sorry, there was a technical error, please try again." />
+</div>
+</div>
+<div class="btn-group ">
+<button type="submit" class="btn btn-next" data-Unknown-message="Sorry, there was a technical error, please try again." data-alreadyRegisteredRecently-message="Sorry, there was a technical error, please try again." data-EmailAddressNotValid-message="The Email address is not allowed.">Continue</button>
+</div>
+<div class="legal-warning-text ">
+<div class="legal-warning-text-inner">
+<p>By registering, I confirm that I have read and accepted the
+<a href="javascript:;" class="legal__agb">terms and conditions</a>
+and
+<a href="javascript:;" class="legal__privacy">privacy policy</a>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</form>
+<div class="progress-bar-wrapper">
+<ul class="progress-bar js-progress-bar">
+<li class="active">1 / 9</li>
+<li class="">2 / 9</li>
+<li class="">3 / 9</li>
+<li class="">4 / 9</li>
+<li class="">5 / 9</li>
+<li class="">6 / 9</li>
+<li class="">7 / 9</li>
+<li class="">8 / 9</li>
+<li class="">9 / 9</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="footer">
+<div class="legal__container">
+<div class="legal__agb url_imprint" data-uid="legal__agb--{{ txt_legal_agb }}">Terms & Conditions</div>
+<div class="legal__imprint" data-uid="legal__imprint--{{ txt_legal_imprint }}">Imprint</div>
+<div class="legal__privacy" data-uid="legal__privacy--{{ txt_legal_privacy }}">Privacy Policy</div>
+</div>
+<div class="copyright">Copyright &copy; 1996 -2022 - All rights reserved</div>
+</div>
+<div class="err-message-wrapper js-err">
+<div class="err-message">
+<i class="close"></i>
+<span>zvxzcv</span>
+</div>
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script> 
+                var notJsCanvas = false;
+                                    notJsCanvas = true;
+                            </script>
+<script type="text/javascript" src="https://lpmedia.servefilesonly.com/build/widgets/registrationFormBuilder/scripts.min.js?972398"></script>
+<script type="text/javascript" src="https://lpmedia.servefilesonly.com/build/widgets/loginFormBuilder/scripts.min.js?972398"></script>
+<script type="text/javascript" src="https://lpmedia.servefilesonly.com/build/templates/Faded/scripts.min.js?972398"></script>
+<script type="text/javascript" src="https://lpmedia.servefilesonly.com/js/popwin.js?972398"></script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+                Popwin.width = 425;
+                Popwin.links.terms.url = 'http://www.teenfinder.com/assets/tplegal/united_tc.html';
+        Popwin.links.privacy.url = 'http://www.teenfinder.com/assets/tplegal/united_privacy.html';
+        Popwin.links.imprint.url = 'http://www.teenfinder.com/assets/tplegal/imprint_united-performance.html';
+        Popwin.links.entertainment.url = 'http://www.teenfinder.com/';
+        Popwin.initialize();
+    });
+</script>
+<script>
+                    let listGirls = [{"imgName":"{{ media_bg_row1_1 }}","nameAge":"Ada (21)","imgUrl":"https:\/\/imedia.servefilesonly.com\/d151bac9-36c7-476c-9b8b-4c4265cbb0c0.jpg?972398"},{"imgName":"{{ media_bg_row1_2 }}","nameAge":"Lauren (20)","imgUrl":"https:\/\/imedia.servefilesonly.com\/7159f2fa-4616-4230-8d64-0a4474974e6c.jpg?972398"},{"imgName":"{{ media_bg_row1_3 }}","nameAge":"Clarice (19)","imgUrl":"https:\/\/imedia.servefilesonly.com\/6ba6ac28-fedf-4aa9-a4d4-9f68a717d602.jpg?972398"},{"imgName":"{{ media_bg_row1_4 }}","nameAge":"Adela (18)","imgUrl":"https:\/\/imedia.servefilesonly.com\/38a05baa-64ef-48e8-81db-e20aa91e5102.jpg?972398"},{"imgName":"{{ media_bg_row1_5 }}","nameAge":"Joyce (19)","imgUrl":"https:\/\/imedia.servefilesonly.com\/1c12d2e4-ea47-4f61-81bd-faa63a192a7b.jpg?972398"},{"imgName":"{{ media_bg_row1_6 }}","nameAge":"Sheila (18)","imgUrl":"https:\/\/imedia.servefilesonly.com\/72bf3b8e-248f-45ea-87ea-18ab74cdab85.jpg?972398"},{"imgName":"{{ media_bg_row1_7 }}","nameAge":"Mary (22)","imgUrl":"https:\/\/imedia.servefilesonly.com\/ecf36087-e71d-49f4-8a2d-13a48402a471.jpg?972398"},{"imgName":"{{ media_bg_row1_8 }}","nameAge":"Alexis (20)","imgUrl":"https:\/\/imedia.servefilesonly.com\/c34471f8-8500-42bc-8c9b-30d55eea8707.jpg?972398"},{"imgName":"{{ media_bg_row2_1 }}","nameAge":"Zoe (21)","imgUrl":"https:\/\/imedia.servefilesonly.com\/db3ceee2-e367-451d-928e-b16c474160b0.jpg?972398"},{"imgName":"{{ media_bg_row2_2 }}","nameAge":"Ursula (22)","imgUrl":"https:\/\/imedia.servefilesonly.com\/98040185-5e8f-482e-b602-75dbb0406ef0.jpg?972398"},{"imgName":"{{ media_bg_row2_3 }}","nameAge":"Violet (20)","imgUrl":"https:\/\/imedia.servefilesonly.com\/c6373c04-02dd-4afe-aebb-c5ed1c8251cc.jpg?972398"},{"imgName":"{{ media_bg_row2_4 }}","nameAge":"Phoebe (18)","imgUrl":"https:\/\/imedia.servefilesonly.com\/bb8cf4fb-46b3-44b6-9609-6b62ee1663cf.jpg?972398"},{"imgName":"{{ media_bg_row2_5 }}","nameAge":"Lydia (19)","imgUrl":"https:\/\/imedia.servefilesonly.com\/4b5c5ded-99b6-412f-a2a7-83531df69165.jpg?972398"},{"imgName":"{{ media_bg_row2_6 }}","nameAge":"Barbara (19)","imgUrl":"https:\/\/imedia.servefilesonly.com\/f770fdb1-c8d5-402e-91c2-6cab02e533b3.jpg?972398"},{"imgName":"{{ media_bg_row2_7 }}","nameAge":"Faith (22)","imgUrl":"https:\/\/imedia.servefilesonly.com\/f843ce06-461e-4460-90a4-fa8b9ac32b2e.jpg?972398"},{"imgName":"{{ media_bg_row2_8 }}","nameAge":"Daisy (22)","imgUrl":"https:\/\/imedia.servefilesonly.com\/c6ab16cb-5ec4-47a0-845f-b2c044dd339f.jpg?972398"},{"imgName":"{{ media_bg_row3_1 }}","nameAge":"Camille (19)","imgUrl":"https:\/\/imedia.servefilesonly.com\/713906e9-4763-4cce-9617-ba9eac01d8d4.jpg?972398"},{"imgName":"{{ media_bg_row3_2 }}","nameAge":"Gabriella (20)","imgUrl":"https:\/\/imedia.servefilesonly.com\/d9d50eed-5b94-420e-ae71-dc0d10614763.jpg?972398"},{"imgName":"{{ media_bg_row3_3 }}","nameAge":"Alana (18)","imgUrl":"https:\/\/imedia.servefilesonly.com\/6d909e7a-a2ae-404a-b9a7-b14a4c33eea7.jpg?972398"},{"imgName":"{{ media_bg_row3_4 }}","nameAge":"Gillian (20)","imgUrl":"https:\/\/imedia.servefilesonly.com\/88841c36-c130-4904-a055-107b19fa8bf8.jpg?972398"},{"imgName":"{{ media_bg_row3_5 }}","nameAge":"Harriet (22)","imgUrl":"https:\/\/imedia.servefilesonly.com\/d14b74a0-99c6-4870-9386-42c05cb51b68.jpg?972398"},{"imgName":"{{ media_bg_row3_6 }}","nameAge":"Polly (21)","imgUrl":"https:\/\/imedia.servefilesonly.com\/240bb695-bef8-4045-8d86-2bc3a0d397f2.jpg?972398"},{"imgName":"{{ media_bg_row3_7 }}","nameAge":"Rachel (19)","imgUrl":"https:\/\/imedia.servefilesonly.com\/708c9026-945c-4e59-8f39-4662389b20c2.jpg?972398"},{"imgName":"{{ media_bg_row3_8 }}","nameAge":"Yvette (22)","imgUrl":"https:\/\/imedia.servefilesonly.com\/585a4893-6c86-49d1-b5c6-a345358b4916.jpg?972398"},{"imgName":"{{ media_bg_row4_1 }}","nameAge":"Jade (22)","imgUrl":"https:\/\/imedia.servefilesonly.com\/897b0fa7-fca0-4f91-8338-751d905b8603.jpg?972398"},{"imgName":"{{ media_bg_row4_2 }}","nameAge":"Sapphire (20)","imgUrl":"https:\/\/imedia.servefilesonly.com\/e5cf1ed5-3207-423c-97eb-089e59331806.jpg?972398"},{"imgName":"{{ media_bg_row4_3 }}","nameAge":"Sybil (21)","imgUrl":"https:\/\/imedia.servefilesonly.com\/206832fb-4091-442f-8ee7-821ae2d51207.jpg?972398"},{"imgName":"{{ media_bg_row4_4 }}","nameAge":"Tiffany (21)","imgUrl":"https:\/\/imedia.servefilesonly.com\/3f22f4ce-a624-4ee6-bad9-97050967e426.jpg?972398"},{"imgName":"{{ media_bg_row4_5 }}","nameAge":"Penelope (18)","imgUrl":"https:\/\/imedia.servefilesonly.com\/555b6102-4f2c-45e7-a5a0-770081c4093e.jpg?972398"},{"imgName":"{{ media_bg_row4_6 }}","nameAge":"Zea (22)","imgUrl":"https:\/\/imedia.servefilesonly.com\/74adb985-2c14-4831-8533-5ca100f9c8f6.jpg?972398"},{"imgName":"{{ media_bg_row4_7 }}","nameAge":"Melanie (22)","imgUrl":"https:\/\/imedia.servefilesonly.com\/702d00b1-f849-4124-af74-71ff1c31a457.jpg?972398"},{"imgName":"{{ media_bg_row4_8 }}","nameAge":"Callie (21)","imgUrl":"https:\/\/imedia.servefilesonly.com\/f45a0420-a308-4d44-a235-31d41ba5a067.jpg?972398"},{"imgName":"{{ media_bg_row5_1 }}","nameAge":"Mandy (18)","imgUrl":"https:\/\/imedia.servefilesonly.com\/14c8eee4-10ed-4f64-870f-f9d2afed46f1.jpg?972398"},{"imgName":"{{ media_bg_row5_2 }}","nameAge":"Kendall (18)","imgUrl":"https:\/\/imedia.servefilesonly.com\/3244eff9-b0ce-4774-bd37-9de29119da16.jpg?972398"},{"imgName":"{{ media_bg_row5_3 }}","nameAge":"Juliet (22)","imgUrl":"https:\/\/imedia.servefilesonly.com\/68fb51d2-1668-41ac-a50c-304802227f45.jpg?972398"},{"imgName":"{{ media_bg_row5_4 }}","nameAge":"Sadie (20)","imgUrl":"https:\/\/imedia.servefilesonly.com\/7f8b4065-3926-41c7-9e15-238c040f753a.jpg?972398"},{"imgName":"{{ media_bg_row5_5 }}","nameAge":"Sienna (21)","imgUrl":"https:\/\/imedia.servefilesonly.com\/434f7ade-8fb7-4322-b064-20d29902ebcf.jpg?972398"},{"imgName":"{{ media_bg_row5_6 }}","nameAge":"Joan (19)","imgUrl":"https:\/\/imedia.servefilesonly.com\/ed87fce1-721b-4be6-b42c-5ce6e601b8f2.jpg?972398"},{"imgName":"{{ media_bg_row5_7 }}","nameAge":"Chloe (22)","imgUrl":"https:\/\/imedia.servefilesonly.com\/34bb25f2-b7b2-4001-93d3-1bb6faaaa614.jpg?972398"},{"imgName":"{{ media_bg_row5_8 }}","nameAge":"Rhea (21)","imgUrl":"https:\/\/imedia.servefilesonly.com\/f4bc568d-221c-4871-9208-4b2fecf05404.jpg?972398"},{"imgName":"{{ media_bg_row6_1 }}","nameAge":"Bonnie (19)","imgUrl":"https:\/\/imedia.servefilesonly.com\/eb2fec7e-5c5a-4c3e-b2c4-a4fd0b8f68e0.jpg?972398"},{"imgName":"{{ media_bg_row6_2 }}","nameAge":"Prunella (22)","imgUrl":"https:\/\/imedia.servefilesonly.com\/6b8a50b5-c435-4c75-8521-67af12fecc9c.jpg?972398"},{"imgName":"{{ media_bg_row6_3 }}","nameAge":"Wynne (22)","imgUrl":"https:\/\/imedia.servefilesonly.com\/a7c33255-7199-41f8-a0dc-b53c2e63c4c2.jpg?972398"},{"imgName":"{{ media_bg_row6_4 }}","nameAge":"Josephine (22)","imgUrl":"https:\/\/imedia.servefilesonly.com\/22c5138a-c5a3-4971-aa14-91da4439cd5a.jpg?972398"},{"imgName":"{{ media_bg_row6_5 }}","nameAge":"Beata (18)","imgUrl":"https:\/\/imedia.servefilesonly.com\/525c0f73-7f75-4c0a-aa6a-7163d6a8b95b.jpg?972398"},{"imgName":"{{ media_bg_row6_6 }}","nameAge":"Imogen (22)","imgUrl":"https:\/\/imedia.servefilesonly.com\/0d358d78-11fa-4ef5-87bc-7856a05cd6d7.jpg?972398"},{"imgName":"{{ media_bg_row6_7 }}","nameAge":"Sirena (21)","imgUrl":"https:\/\/imedia.servefilesonly.com\/c7392a03-7b08-49f7-bace-92e1116892a5.jpg?972398"},{"imgName":"{{ media_bg_row6_8 }}","nameAge":"Elaine (18)","imgUrl":"https:\/\/imedia.servefilesonly.com\/2c7110d3-11d5-4d7b-9ec8-ec5a88e776af.jpg?972398"},{"imgName":"{{ media_bg_row7_1 }}","nameAge":"Georgette (21)","imgUrl":"https:\/\/imedia.servefilesonly.com\/12cbc84e-68c3-4d60-a72c-2279f781acef.jpg?972398"},{"imgName":"{{ media_bg_row7_2 }}","nameAge":"Muriel (19)","imgUrl":"https:\/\/imedia.servefilesonly.com\/edb44532-8cc8-4288-8c5d-bbdd9bd816c0.jpg?972398"},{"imgName":"{{ media_bg_row7_3 }}","nameAge":"Vivian (22)","imgUrl":"https:\/\/imedia.servefilesonly.com\/66c8805c-aa34-4194-9ac6-bfea70948bff.jpg?972398"},{"imgName":"{{ media_bg_row7_4 }}","nameAge":"Kyla (22)","imgUrl":"https:\/\/imedia.servefilesonly.com\/b593b2e8-c37f-4c94-bdf3-259893174051.jpg?972398"},{"imgName":"{{ media_bg_row7_5 }}","nameAge":"Janice (22)","imgUrl":"https:\/\/imedia.servefilesonly.com\/cd6bce1a-bd52-4d9b-ad05-4ebcebddaf2a.jpg?972398"},{"imgName":"{{ media_bg_row7_6 }}","nameAge":"Gabrielle (21)","imgUrl":"https:\/\/imedia.servefilesonly.com\/fac4b938-23a3-456c-9b74-f4f345ebd64d.jpg?972398"},{"imgName":"{{ media_bg_row7_7 }}","nameAge":"Hazel (20)","imgUrl":"https:\/\/imedia.servefilesonly.com\/1d6d494b-85ed-4c01-b047-4614d233facb.jpg?972398"},{"imgName":"{{ media_bg_row7_8 }}","nameAge":"Nadia (19)","imgUrl":"https:\/\/imedia.servefilesonly.com\/1e2a95c7-12d3-4fed-9ccc-30ca8ec2e06a.jpg?972398"},{"imgName":"{{ media_bg_row8_1 }}","nameAge":"Rowena (18)","imgUrl":"https:\/\/imedia.servefilesonly.com\/727a82f2-edb8-4150-a0eb-a635744046ff.jpg?972398"},{"imgName":"{{ media_bg_row8_2 }}","nameAge":"Maxine (21)","imgUrl":"https:\/\/imedia.servefilesonly.com\/f6aae1eb-6070-47cd-add0-7d89a8d6bc4f.jpg?972398"},{"imgName":"{{ media_bg_row8_3 }}","nameAge":"Myrtle (20)","imgUrl":"https:\/\/imedia.servefilesonly.com\/ce187b99-bc14-43c5-8ad2-7b69fd4f2b7d.jpg?972398"},{"imgName":"{{ media_bg_row8_4 }}","nameAge":"Linette (19)","imgUrl":"https:\/\/imedia.servefilesonly.com\/63d5ee78-b174-44c3-b669-77ee2984cbb8.jpg?972398"},{"imgName":"{{ media_bg_row8_5 }}","nameAge":"Hayden (18)","imgUrl":"https:\/\/imedia.servefilesonly.com\/c2285469-6f3b-4bba-84b1-5174f73e7e12.jpg?972398"},{"imgName":"{{ media_bg_row8_6 }}","nameAge":"Ivory (18)","imgUrl":"https:\/\/imedia.servefilesonly.com\/d4ba1d1d-473e-414b-8733-7fb595f3031f.jpg?972398"},{"imgName":"{{ media_bg_row8_7 }}","nameAge":"Henrietta (20)","imgUrl":"https:\/\/imedia.servefilesonly.com\/87424e3a-ebdb-4743-8171-df858d15468f.jpg?972398"},{"imgName":"{{ media_bg_row8_8 }}","nameAge":"Alanna (22)","imgUrl":"https:\/\/imedia.servefilesonly.com\/2692032b-5cca-4d61-8d70-e355a2f8127d.jpg?972398"},{"imgName":"{{ media_bg_row9_1 }}","nameAge":"Trix (21)","imgUrl":"https:\/\/imedia.servefilesonly.com\/74e4b8f5-a37a-4eeb-be3b-715d1328d4ea.jpg?972398"},{"imgName":"{{ media_bg_row9_2 }}","nameAge":"Bridget (21)","imgUrl":"https:\/\/imedia.servefilesonly.com\/96d559d4-5274-4723-97d9-fc96e782c1a0.jpg?972398"},{"imgName":"{{ media_bg_row9_3 }}","nameAge":"Elvira (19)","imgUrl":"https:\/\/imedia.servefilesonly.com\/267bcb31-88d8-4494-bee2-e8d2ea4ab715.jpg?972398"},{"imgName":"{{ media_bg_row9_4 }}","nameAge":"Lane (22)","imgUrl":"https:\/\/imedia.servefilesonly.com\/39440f1d-4c4d-44bd-9751-f34c7cd382b3.jpg?972398"},{"imgName":"{{ media_bg_row9_5 }}","nameAge":"Justine (21)","imgUrl":"https:\/\/imedia.servefilesonly.com\/73f6e8b7-fe57-4fbf-b011-3d3c4ea02ee9.jpg?972398"},{"imgName":"{{ media_bg_row9_6 }}","nameAge":"Lucy (22)","imgUrl":"https:\/\/imedia.servefilesonly.com\/c6251843-9aa6-4660-9b92-a15e2447b175.jpg?972398"}];
+                    let mapSize = [document.getElementById('map').clientWidth, document.getElementById('map').clientHeight];
+                    const mode = mapSize[0] >= 7680 ? 'k8' : (mapSize[0] >= 3480 ? 'k4' : 'normal');
+                    document.getElementById('map').classList.add('mode-' + mode);
+                    let mapOpts = {
+                        zoomLevels: {
+                            normal: [11, 12, 13],
+                            k4: [13, 14, 15],
+                            k8: [14, 15, 16]
+                        },
+                        iniZoom: {
+                            normal: 13,
+                            k4: 15,
+                            k8: 16
+                        },
+                        girlsLoadByZoomDefault: [12, 13, 15],
+                        iniLocation: ['40.41630', '-3.69340'].map(p => 1 * p),
+                        fallbackLocation: [49.583332, 11.016667],
+                        tileSize: {
+                            normal: 512,
+                            k4: 1024,
+                            k8: 2048
+                        },
+                        zoomOffset: {
+                            normal: -1,
+                            k4: -2,
+                            k8: -3
+                        },
+                        iconOnline: {
+                            normal: [13, 13, 15, 15],
+                            k4: [26, 26, 30, 30],
+                            k8: [52, 52, 60, 60]
+                        },
+                        nameOnline: {
+                            normal: [2, -3, 15, 15],
+                            k4: [4, -6, 30, 30],
+                            k8: [8, -12, 60, 60]
+                        },
+                        iconSize: {
+                            normal: [60, 60],
+                            k4: [120, 120],
+                            k8: [240, 240]
+                        },
+                        shadowSize: {
+                            normal: ['auto', 120],
+                            k4: ['auto', 240],
+                            k8: ['auto', 480]
+                        },
+                        shadowOffset: {
+                            normal: {top: 11, left: 13},
+                            k4: {top: 22, left: 27},
+                            k8: {top: 44, left: 54}
+                        },
+                        tooltipClassName: {
+                            normal: 'mytt-container',
+                            k4: 'mytt-container-4k',
+                            k8: 'mytt-container-8k',
+                        }
+                    };
+
+                                        
+                    let girlsLoadByZoom = [30,20,20];
+                    if (girlsLoadByZoom == null) {
+                        girlsLoadByZoom = mapOpts.girlsLoadByZoomDefault;
+                    } else {
+                        girlsLoadByZoom = girlsLoadByZoom.reverse()
+                    }
+                    girlsLoadByZoom = Object.assign.apply({}, mapOpts.zoomLevels[mode].map((v, i) => ({[v]: girlsLoadByZoom[i]})));
+                    let bounds = {}, zoom, leftZoom, markers = [];
+                    let iniLocation = mapOpts.iniLocation;
+                    if (iniLocation[0] == 0 || iniLocation[1] == 0) {
+                        iniLocation = mapOpts.fallbackLocation;
+                    }
+                    let mymap = L.map('map').setView(iniLocation, mapOpts.iniZoom[mode]);
+
+                    let MarkerPatern = L.DivIcon.extend({
+                        options: {
+                            iconAnchor: [mapOpts.iconSize[mode][0]/2 + 13, mapOpts.iconSize[mode][1]/2 + 89],
+                            iconSize: mapOpts.iconSize,
+                            className: 'marker-patern',
+                            tooltipAnchor: [0, -80]
+                        }
+                    })
+
+                    //Add black cover
+                    let bound = mymap.getBounds();
+                    let blackCover = L.marker([bound.getNorth(), bound.getWest()], {icon: L.divIcon({className: 'black-cover'})}).addTo(mymap);
+
+                    mymap.on('zoom', function(e) {
+                        if (typeof girlsLoadByZoom[mymap.getZoom()] != 'undefined' && (mymap.getZoom() < zoom || typeof zoom == 'undefined')) {
+                            loadMarkers();
+                        }
+                    });
+
+                    mymap.on('viewreset', function() {
+                        let newLocation = mymap.getCenter();
+                        let latOffset = newLocation.lat - iniLocation[0];
+                        let longOffset = newLocation.lng - iniLocation[1];
+                        
+                        let bound = mymap.getBounds();
+                        for (let i = 0; i < markers.length; i ++ ) {
+                            let latLng = markers[i].getLatLng();
+                            markers[i].setLatLng(getRandomePointInArea(bound))
+                        }
+                        blackCover.setLatLng([blackCover.getLatLng().lat + latOffset, blackCover.getLatLng().lng + longOffset])
+                    })
+
+                    mymap.on('resize', function(e) {
+                        let bound = mymap.getBounds();
+                        mapSize[0] = e.newSize.x, mapSize[1] = e.newSize.y;
+                        let oldIdx = blackCover.getElement().style['z-index'];
+                        blackCover.setLatLng([bound.getNorth(), bound.getWest()]).getElement().style.cssText += 'z-index: ' + oldIdx + ';width:' + mapSize[0] + 'px;height:' + mapSize[1] + 'px';
+                    });
+                    
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
+                    }).addTo(mymap);
+
+                    mymap.locate({setView: true, maxZoom: mapOpts.iniZoom[mode]});
+                    loadMarkers();
+
+                    function getRandomePointInArea(bound, excludedBound) {
+                        let x, y, height = bound.getNorth() - bound.getSouth(), width = bound.getEast() - bound.getWest();
+                        do {
+                            x = height * 0.8 * Math.random() + bound.getSouth() + height * 0.1;
+                        } while (excludedBound && (x > excludedBound.getNorth() || x < excludedBound.getSouth()));
+                        do {
+                            y = width * 0.9 * Math.random() + bound.getWest() + width * 0.05;
+                        } while (excludedBound && (y < excludedBound.getWest() || y > excludedBound.getEast()));
+
+                        return [x, y];
+                    }
+
+                    function getToolTipDirection(point, bound) {
+                        let height = bound.getNorth() - bound.getSouth()
+                        return point[0] >= height * 0.8 + bound.getSouth() ? 'bottom' : (point[0] <= height * 0.1 + bound.getSouth() ? 'top' : 'auto');
+                    }
+
+                    function loadMarkers() {
+                        zoom = mymap.getZoom();
+                        let bound = mymap.getBounds(), excludedBound = bounds[zoom];
+                        bounds[zoom] = bound;
+                        let girls = listGirls.filter(function(girl) {
+                            return  typeof girl.loaded == 'undefined'
+                        }).sort(function() {
+                            return 0.5 - Math.random()
+                        }).slice(0, girlsLoadByZoom[mymap.getZoom()]);
+                        for (let i = 0; i < girls.length; i ++) {
+                                                            let pin = 'https://lpmedia.servefilesonly.com/img/_btns/marker_bg.png';
+                                                        
+                            let iconOnline = '', nameOnline = '';
+                                                        
+                            let icon = new MarkerPatern({html: '<div class="girl-icon-container">' + iconOnline + '<img class="bg" style="height:' + mapOpts.shadowSize[mode][1] + 'px;width:' + mapOpts.shadowSize[mode][0] + 'px" src="' + pin + '" alt="Teenfinder.com"/><img class="girl" style="height:' + mapOpts.iconSize[mode][0] + 'px;width:' + mapOpts.iconSize[mode][1] + 'px;top:' + mapOpts.shadowOffset[mode].top + 'px;left:' + mapOpts.shadowOffset[mode].left + 'px" src="' + girls[i].imgUrl + '" alt="' + girls[i].nameAge + '"/></div>'});
+                            let point = getRandomePointInArea(bound, excludedBound);
+                            let marker = L.marker(getRandomePointInArea(bound, excludedBound), {icon: icon, riseOnHover: true, riseOffset: 10000});
+                            marker.addTo(mymap)
+                                .bindTooltip(
+                                                                            '<div class="' + mapOpts.tooltipClassName[mode] + '"><img src="' + girls[i].imgUrl + '"><p>' + nameOnline + girls[i].nameAge + '</p></div>', 
+                                                                        
+                                    {opacity: 1, direction: getToolTipDirection(point, bound), className: 'tooltip-fade-in'}
+                                ).on('mouseover',function(e) {
+                                    let bound = mymap.getBounds();
+                                    let idx = e.target.getElement().style.zIndex * 1 - 1;
+                                    blackCover.setLatLng([bound.getNorth(), bound.getWest()]).getElement().style.cssText += 'z-index: ' + idx + ';opacity:1;visibility:visible;width:' + mapSize[0] + 'px;height:' + mapSize[1] + 'px';
+                                    mymap.dragging.disable();
+                                    mymap.touchZoom.disable();
+                                    mymap.doubleClickZoom.disable();
+                                    mymap.scrollWheelZoom.disable();
+                                    mymap.boxZoom.disable();
+                                    mymap.keyboard.disable();
+                                    if (mymap.tap) {
+                                        mymap.tap.disable();
+                                    }
+                                }).on('mouseout',function(e) {
+                                    blackCover.getElement().style.cssText = 'opacity:0;visibility:hidden';
+                                    mymap.dragging.enable();
+                                    mymap.touchZoom.enable();
+                                    mymap.doubleClickZoom.enable();
+                                    mymap.scrollWheelZoom.enable();
+                                    mymap.boxZoom.enable();
+                                    mymap.keyboard.enable();
+                                    if (mymap.tap) {
+                                        mymap.tap.enable();
+                                    }
+                                });
+                            markers.push(marker)
+                            girls[i].loaded = true;
+                        }
+                    }
+
+                    function getRndInteger(min, max) {
+                        return Math.floor(Math.random() * (max - min + 1) ) + min;
+                    }
+
+                    function updateUserCount() {
+                        var textCount = $('.user-count b').eq(0), count = textCount.data('count'),
+                            randomCount = getRndInteger(4, 10), newCount = count+randomCount;
+                        textCount.data('count', newCount);
+                        textCount.html(new Intl.NumberFormat('de-DE').format(newCount));
+
+                        randomInterval = getRndInteger(10, 15) * 1000;
+                        setTimeout(updateUserCount, randomInterval)
+                    }
+                    var randomInterval = getRndInteger(10, 15) * 1000;
+                    setTimeout(updateUserCount, randomInterval);
+
+                    function scaleUp25Percent(opts, percent) {
+                        return Object.assign(opts, {
+                            iconSize: {
+                                normal: [75, 75],
+                                k4: [150, 150],
+                                k8: [300, 300]
+                            },
+                            shadowSize: {
+                                normal: ['auto', 150],
+                                k4: ['auto', 300],
+                                k8: ['auto', 600]
+                            },
+                            shadowOffset: {
+                                normal: {top: 14, left: 16.25},
+                                k4: {top: 27.5, left: 33.75},
+                                k8: {top: 55, left: 67.5}
+                            }
+                        })
+                    }
+
+                    $(function() {
+                        $('.group-btn button').click(function () {
+                            var $this = $(this), choices = { gender: 'MALE', searchGender: 'FEMALE' };
+
+                            $this.addClass('clicked');
+
+                            if ($this.hasClass('searchGender-btn')) {
+                                var genderBtn = $('.gender-btn.clicked').eq(0),
+                                    searchGenderBtn = $('.searchGender-btn.clicked').eq(0);
+
+                                if ((genderBtn.hasClass('gender-1') && searchGenderBtn.hasClass('searchGender-1'))
+                                    || (genderBtn.hasClass('gender-1') && searchGenderBtn.hasClass('searchGender-2'))
+                                    || (genderBtn.hasClass('gender-2') && searchGenderBtn.hasClass('searchGender-1')))
+                                    choices = { gender: 'FEMALE', searchGender: 'MALE' };
+
+                                if (genderBtn.hasClass('gender-1') && searchGenderBtn.hasClass('searchGender-3'))
+                                    choices = { gender: 'FEMALE', searchGender: 'FEMALE' };
+
+                                if (genderBtn.hasClass('gender-3') && searchGenderBtn.hasClass('searchGender-1'))
+                                    choices = { gender: 'MALE', searchGender: 'MALE' };
+
+                                $('[name=gender]').val(choices.gender);
+                                $('[name=searchGender]').val(choices.searchGender);
+                            }
+                        });
+                    });
+
+                                    </script>
+<script>
+                    var _handlingServerReponseError = function(form, response) {
+                        $.each(response.errors, function(element, errors) {
+                            var errorKey = Object.keys(errors)[0],
+                                errorMsg = errors[errorKey],
+                                $btnSubmit = $(form).find('button[type=submit]');
+                            
+                            if (element === 'unknown')
+                                var customMsg = $btnSubmit.attr('data-' + errorKey + '-message');
+                            else
+                                var customMsg = $('#' + element).attr('data-' + errorKey + '-message');
+
+                            if (typeof customMsg != 'undefined')
+                                errorMsg = customMsg;
+
+                            showErr(errorMsg);
+                        });
+                    };
+
+                    $(function() {
+                        $('.js-err').hide();
+
+                        var timeout = 0;
+                        var isErrorShowed = true;
+                        $('.btn').on('click', function(event){
+                            if (timeout > 0)
+                                clearInterval(timeout);
+
+                            var $this = $(this);
+                            timeout = setInterval(function() {
+                                var err = $($this).closest('.js-step').find('.required').text();
+
+                                if (err) {
+                                    showErr(err);
+                                    isErrorShowed = true;
+                                    clearInterval(timeout);
+                                }
+                            }, 100);
+                        });
+                    });
+
+                    function showErr(err) {
+                        $('.js-err').find('span').html(err);
+                        $('.js-err').show();
+                    }
+                </script>
+<script>
+                $(document).on('click', '.select-items > div', function () {
+                    var $this = $('#age'), value = $this.val(), nextBtn = $this.closest('.js-step').find('.js-next-step');
+
+                    if (value) {
+                        insertParamsToURL('age', value);
+                        nextBtn.show();
+                        $('.select-selected').addClass('select-confirm');
+                    } else {
+                        nextBtn.hide();
+                        $('.select-selected').removeClass('select-confirm');
+                    }
+                });
+
+                $(function() {
+                    $('[name=age] + .select-selected').on('click', function(){
+                        resetAgeFilterSize();
+                    });
+
+                    $('.btn-adjust').click(function () {
+                        window.location = "https://app.adjust.com/vr8hia7?campaign=null&amp;adgroup=null&amp;publisher_clickid=619eceb6-3c0f-402f-a748-3168c5f5377e&amp;tracker_limit=2000000000&amp;publisher_id=1000&amp;creative=null&amp;gclid=null";
+                    });
+                });
+
+                $(window).resize(function () {
+                    resetAgeFilterSize();
+                });
+
+                function resetAgeFilterSize() {
+                    var ageBox = $('[name=age] + .select-selected').eq(0);
+
+                    if (ageBox.length > 0) {
+                        var ageHeight = ageBox.height(), ageTop = ageBox.offset().top;
+
+                        $('[name=age] + .select-selected + .select-items').css('max-height', $('body').height() - (ageHeight*2) - $('.footer').height() - ageTop);
+                    }
+                }
+
+                function insertParamsToURL(key, value) {
+                    var selectedName = value,
+                        url = window.location.pathname,
+                        params = window.location.search.replace('?', '').split('&'),
+                        newParams = [];
+
+                    for (var i = 0; i < params.length; i++) {
+                        if (params[i].indexOf(key + '=') < 0 && params[i] != '') {
+                            newParams.push(params[i]);
+                        }
+                    }
+
+                    url += '?' + key + '=' + selectedName + (newParams.length > 0 ? '&' + newParams.join('&') : '');
+                    window.history.replaceState(null, null, url);
+                }
+
+
+            </script>
+</body>
+
+<!-- Mirrored from www.teenfinder.com/landing/fm6100?clickId=619eceb6-3c0f-402f-a748-3168c5f5377e by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 18 Dec 2022 09:01:17 GMT -->
+</html>
